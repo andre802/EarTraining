@@ -1,0 +1,6 @@
+Ear training app made with tonal, sample-player, packaged with npm, bundled with webpack.
+
+Run 'npm install' to install the dependencies locally.
+
+Run 'npm run build' to create bundled code in dist folder. Open index.html
+
