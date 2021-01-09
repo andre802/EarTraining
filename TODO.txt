@@ -1,0 +1,7 @@
+TODO
+Add storage of scores
+Chords
+Progressions
+
+DONE
+Change between harmonic and melodic intervals

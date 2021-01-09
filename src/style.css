@@ -10,11 +10,15 @@ body {
 header {
     border-bottom: 1px solid black;
     margin-bottom: 1em;
+    box-shadow: 5px 4px 5px;
 }
 main {
     padding: 0 1em;
     text-align: center;
     margin: 0 auto;
+}
+#controls button {
+    margin: .75em 1em;
 }
 #score {
     display: block;
@@ -24,6 +28,9 @@ main {
     border-bottom: 1px solid;
     box-shadow: 3px 3px 3px 2px;
     width: 13em;
+}
+ p {
+    margin: 1em
 }
 button {
     width: fit-content;
@@ -48,8 +55,27 @@ button:hover {
     box-shadow: 5px 5px 3px 2px;
 }
 ul {
-    margin: 1em 0;
+    padding: 1em 0;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     list-style-type: none;
+    flex-wrap: wrap;
+}
+ul li {
+    margin: 0 2em;
+}
+ul li a {
+    color: black;
+    text-decoration: none;;
+}
+a:hover {
+    text-decoration: underline;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    padding: 1em;
+    background: black;
+    color: white;
+    width: 100%;
 }

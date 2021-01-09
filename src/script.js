@@ -20,14 +20,18 @@ const Intervals = {
     direction: "asc",
     intervals: ["m2", "M2", "m3", "M3", "P4", "P5", "m6", "M6", "m7", "M7", "P8"],
     makeButtons: () => {
-        const body = document.getElementsByTagName("body")[0];
+        if (localStorage.getItem("streak") > score) {
+            document.getElementById("streak").innerText = localStorage.getItem("streak");
+        }
+        const body = document.getElementsByTagName("main")[0];
         
         const controlDiv = document.createElement("div");
 
         const playInterval = document.createElement("button");
         const replayInterval = document.createElement("button");
         const changeDirection = document.createElement("button");
-        controlDiv.append(playInterval, replayInterval, changeDirection);
+        const changeType = document.createElement("button");
+        controlDiv.append(playInterval, replayInterval, changeDirection, changeType);
         const intervalDiv = document.createElement("div");
         intervalDiv.append(
             Button("m2", "Minor 2nd"),
@@ -42,13 +46,17 @@ const Intervals = {
             Button("M7", "Major 7th"),
             Button("P8", "Octave"));
         intervalDiv.id = "intervals";
+        controlDiv.id = "controls";
         playInterval.innerText = "Start";
         replayInterval.innerText = "Replay";
         changeDirection.innerText = "Change Direction";
+        changeType.innerText = "Melodic";
         playInterval.addEventListener("click", () => Intervals.playRandom());
         replayInterval.addEventListener("click", () => Intervals.playInterval(Intervals.interval))
         changeDirection.addEventListener("click", () => Intervals.changeDirection());
+        changeType.addEventListener("click", () => Intervals.changeType(changeType));
         body.append(controlDiv, intervalDiv);
+        
     },
     changeDirection: () => {
         if (Intervals.direction == "asc") {
@@ -57,7 +65,13 @@ const Intervals = {
             Intervals.direction = "asc";
         }
     },
-    playInterval: (interval) => {
+    changeType: (btn) => {
+        if (Intervals.type == "melodic") {
+            Intervals.type = "harmonic";
+        } else Intervals.type = "melodic";
+        btn.innerText = Intervals.type.substring(0,1).toUpperCase() + Intervals.type.substring(1,);
+    },
+    playMelodic: (interval) => {
         let end;
         // Determine end depending on if direction of interval is ascending or descending
         if (Intervals.direction == "asc") {
@@ -70,6 +84,21 @@ const Intervals = {
             piano.play(end, audioCtx.currentTime + 1).stop(audioCtx.currentTime + 2);
         });
     },
+    playHarmonic: (interval) => {
+        let  end = Note.transpose(Intervals.start,interval);
+
+        // Play interval
+        let audioCtx = new AudioContext();
+        Soundfont.instrument(audioCtx, 'acoustic_grand_piano').then((piano) => {
+            piano.play(Intervals.start, audioCtx.currentTime).stop(audioCtx.currentTime + 1);
+            piano.play(end, audioCtx.currentTime1).stop(audioCtx.currentTime + 1);
+        });
+    },
+    playInterval: (interval) => {
+        if (Intervals.type == "melodic") {
+            Intervals.playMelodic(interval);
+        } else Intervals.playHarmonic(interval);
+    },
     playRandom: () => {
         
         const getRandom = (max) => {
@@ -80,18 +109,13 @@ const Intervals = {
         Intervals.start = start;
         // Get interval        
         let interval = Intervals.intervals[getRandom(Intervals.intervals.length)];
-        // Get second note in interval
-        let end;
-        if (Intervals.direction == "asc") {
-            end = Note.transpose(start,interval);
-        } else end = Note.transpose(start, interval.substr(0,1) + '-' + interval.substr(1));
-        // Play interval
-        let audioCtx = new AudioContext();
-        Soundfont.instrument(audioCtx, 'acoustic_grand_piano').then((piano) => {
-            piano.play(start, audioCtx.currentTime).stop(audioCtx.currentTime + 1);
-            piano.play(end, audioCtx.currentTime + 1).stop(audioCtx.currentTime + 2);
-        });
         Intervals.interval = interval;
+        // Get second note in interval
+        if (Intervals.type == "harmonic") {
+            Intervals.playHarmonic(interval);
+        } else Intervals.playMelodic(interval);
+        
+         
         // Wait for user input, check response
         waiting = true;
     },
@@ -128,6 +152,14 @@ function checkResponse(interval, response) {
     if (interval == response && waiting) {
         // Show user is correct
         score++;
+        // Update Streak
+        if (localStorage.getItem("streak") > score) {
+            document.getElementById("streak").innerText = localStorage.getItem("streak");
+        }
+        if (localStorage.getItem("streak") == null || localStorage.getItem("streak") < score) {
+            localStorage.setItem("streak", score);
+            document.getElementById("streak").innerText = localStorage.getItem("streak");
+        }
         let correct = `<br>Correct! You answered ${Intervals.convert(response)}`;
         document.getElementById("score").innerHTML = score + correct;
         Intervals.playRandom();
