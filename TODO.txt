@@ -1,5 +1,7 @@
 TODO
 Add storage of scores
+--added local store
+-add session storage, option for local
 Chords
 Progressions
 

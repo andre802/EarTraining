@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0
 }
+div, p {
+    border-radius: 4px;
+}
 body {
     margin: 0;
     width: 100%;
@@ -27,20 +30,37 @@ main {
     padding: 1em;
     border-bottom: 1px solid;
     box-shadow: 3px 3px 3px 2px;
-    width: 13em;
+    width: 60%;
+    line-height: 2em;
+    border-radius: 4px;
 }
  p {
-    margin: 1em
+    margin: 1em;
+    font-size: 1.25em;
 }
 button {
     width: fit-content;
     padding: .5em .75em;
     margin: 0 auto;
-    transition: .5s all linear;
+    transition: .3s all linear;
+    border-radius: 2px;
+    border: 1px solid black;
 }
 button:hover {
-    color: white;
-    background-color: black;
+    color: aliceblue;
+    background-color: #145b5f;
+}
+#streakContainer {
+    width: fit-content;
+    margin: 0 auto 1em;
+    padding: .5em;
+    box-shadow: 2px 5px 5px;
+}
+#controls {
+    box-shadow: 4px 2px 1px gray;
+    width: fit-content;
+    margin: 0 auto;
+    box-shadow: 4px 2px 1px grey;
 }
 #intervals {
     width: fit-content;
@@ -48,11 +68,10 @@ button:hover {
     grid-template-columns: auto auto auto;
     grid-column-gap: 1em;
     grid-row-gap: .5em;
-    border: 1px solid;
-    margin: 1em auto;
+    margin: 1em auto 2em;
     justify-content: center;
     padding: 1em;
-    box-shadow: 5px 5px 3px 2px;
+    box-shadow: 5px 3px 4px 1px dimgray;
 }
 ul {
     padding: 1em 0;
@@ -72,10 +91,9 @@ a:hover {
     text-decoration: underline;
 }
 footer {
-    position: fixed;
     bottom: 0;
     padding: 1em;
     background: black;
     color: white;
-    width: 100%;
+    width: -webkit-fill-available;;
 }
