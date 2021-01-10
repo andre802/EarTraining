@@ -2,28 +2,39 @@
     margin: 0;
     padding: 0
 }
-div, p {
+
+div,
+p {
     border-radius: 4px;
 }
+
 body {
     margin: 0;
     width: 100%;
     text-align: center;
 }
+
 header {
-    border-bottom: 1px solid black;
-    margin-bottom: 1em;
-    box-shadow: 5px 4px 5px;
+    border-bottom: 2px solid black;
+    margin-bottom: .25em;
+    box-shadow: 3px 4px 5px;
+    background-color: #87b2de;
+    font-size: 1.2em;
+    min-height: 10vh;
 }
+
 main {
-    padding: 0 1em 2em;
+    padding: 1em 1em 2em;
     text-align: center;
     margin: 0 auto;
     min-height: 100vh;
+    background: ghostwhite;
 }
+
 #controls button {
     margin: .75em 1em;
 }
+
 #score {
     display: block;
     font-size: 1.25em;
@@ -35,38 +46,49 @@ main {
     line-height: 2em;
     border-radius: 4px;
 }
- p {
+
+p {
     margin: 1em;
     font-size: 1.25em;
 }
+
 button {
     width: fit-content;
     padding: .5em .75em;
     margin: 0 auto;
     transition: .3s all linear;
-    border-radius: 2px;
+    border-radius: 3px;
     border: 1px solid black;
 }
+
 button:disabled {
     background: silver;
 }
+
 button:hover {
     color: aliceblue;
     background-color: #145b5f;
 }
+
 #streakContainer {
     width: fit-content;
     margin: 0 auto 1em;
     padding: .5em;
     box-shadow: 2px 5px 5px;
+    font-weight: bold;
 }
+
 #controls {
     box-shadow: 4px 2px 1px gray;
     width: fit-content;
     margin: 0 auto;
     box-shadow: 4px 2px 1px grey;
+    background-color: crimson;
 }
-#intervals, #chords, #selections {
+
+#intervals,
+#chords,
+#selections {
     display: grid;
     width: fit-content;
     grid-template-columns: auto auto auto;
@@ -76,32 +98,57 @@ button:hover {
     justify-content: center;
     padding: 1em;
     box-shadow: 5px 3px 4px 1px dimgray;
+    background-color: rgb(173, 69, 90);
 }
+
 #selections {
-    margin-top: 5em;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
+    background-color: lightblue;
+}
+#selections p {
+    grid-column: 1/4;
 }
 #selections button {
     width: min-content;
     margin: 0 auto;
 }
+
 ul {
     padding: 1em 0;
     display: flex;
     justify-content: center;
     list-style-type: none;
     flex-wrap: wrap;
+    text-decoration: none;
 }
+
 ul li {
     margin: 0 2em;
 }
+
 ul li a {
     color: black;
-    text-decoration: none;;
+    text-decoration: none;
+    transition: .5s padding cubic-bezier(0.075, 0.82, 0.165, 1)
 }
+
+#current a {
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    text-decoration: none;
+    transition: .5s cubic-bezier(0.075, 0.82, 0.165, 1) all;
+}
+
+#current a:hover {
+    text-decoration: none;
+    padding-bottom: .5em;
+}
+
 a:hover {
-    text-decoration: underline;
+    border-bottom: 2px solid;
+    padding-bottom: .5em;
 }
+
 footer {
     position: relative;
     bottom: 0;

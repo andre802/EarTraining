@@ -2,10 +2,14 @@ TODO
 Add storage of scores
 --added local store
 -add session storage, option for local
---Show statistics, number of each interval/chord played and percentage correct
-Add augmented/diminished intervals
-Chords
+-Show statistics, number of each interval/chord played and percentage correct
 Progressions
+Melodic line
+Add more intervals
+Add more chords
+Play individual notes of chords
 
 DONE
 Change between harmonic and melodic intervals
+Chords
+Add augmented/diminished intervals

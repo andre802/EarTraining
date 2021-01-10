@@ -59,7 +59,10 @@ const Chords = {
     makeSelections: () => {
         const main = document.getElementsByTagName("main")[0];
         const section = document.createElement("section");
+        const  p = document.createElement("p");
+        p.innerText = "Click to add or remove types of chords to test"
         section.id = "selections";
+        section.appendChild(p);
         for (let i = 0; i < Chords.allChords.length; i++) {
             section.append(Chords.selectionButton(Chords.allChords[i]));
         }
@@ -71,7 +74,6 @@ const Chords = {
         if (Chords.selectedChords.includes(type)) {
             Chords.selectedChords = Chords.selectedChords.filter(chord => chord != type);
             // Remove button from chord selections
-            console.log(Array.from(document.getElementById("chords").children));
             let arr = Array.from(document.getElementById("chords").children).filter(el => el.id != type);
             let chords = document.getElementById("chords").innerHTML = '';
             arr.forEach(el => {
@@ -95,7 +97,6 @@ const Chords = {
         })
     },
     playRandom: () => {
-        console.log("random");
         const getRandom = (max) => {
             return Math.floor(Math.random() * max);
         }
@@ -105,7 +106,6 @@ const Chords = {
         Chords.type = Chords.selectedChords[getRandom(Chords.selectedChords.length)];
         // Get notes of chord using tonal library
         Chords.notes = Chord.getChord(Chords.type, Chords.tonic).notes;
-        console.log(Chords.notes);
         // Play chord
         Chords.playChord();
     },
@@ -131,12 +131,12 @@ const Chords = {
     hearIndividual: () => { },
     resetScore: () => {
         score = 0;
-        document.getElementById("score").innerText = "Press 'Start' to hear an infinite loop of intervals. Hit 'Replay' to hear the interval again. 'Change Direction' determines whether the interval is ascending (going up in pitch) or descending. A melodic interval is played at different times while the notes of a harmonic interval are played together.<br>The score represents your net number of correct and incorrect answers. Try to beat your streak!";
+        document.getElementById("score").innerHTML = "Press 'Start' to hear an infinite loop of chords. Hit 'Replay' to hear the chord again. <br>Try to beat your streak!";
 
     },
     load: () => {
         if (localStorage.getItem("chordStreak") != null) {
-            document.getElementById("streak").innerText = localStorage.getItem("streak");
+            document.getElementById("streak").innerText = localStorage.getItem("chordStreak");
         }
 
         Chords.makeControls();
