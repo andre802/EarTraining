@@ -2,6 +2,8 @@ TODO
 Add storage of scores
 --added local store
 -add session storage, option for local
+--Show statistics, number of each interval/chord played and percentage correct
+Add augmented/diminished intervals
 Chords
 Progressions
 

@@ -16,9 +16,10 @@ header {
     box-shadow: 5px 4px 5px;
 }
 main {
-    padding: 0 1em;
+    padding: 0 1em 2em;
     text-align: center;
     margin: 0 auto;
+    min-height: 100vh;
 }
 #controls button {
     margin: .75em 1em;
@@ -46,6 +47,9 @@ button {
     border-radius: 2px;
     border: 1px solid black;
 }
+button:disabled {
+    background: silver;
+}
 button:hover {
     color: aliceblue;
     background-color: #145b5f;
@@ -62,9 +66,9 @@ button:hover {
     margin: 0 auto;
     box-shadow: 4px 2px 1px grey;
 }
-#intervals {
-    width: fit-content;
+#intervals, #chords, #selections {
     display: grid;
+    width: fit-content;
     grid-template-columns: auto auto auto;
     grid-column-gap: 1em;
     grid-row-gap: .5em;
@@ -72,6 +76,14 @@ button:hover {
     justify-content: center;
     padding: 1em;
     box-shadow: 5px 3px 4px 1px dimgray;
+}
+#selections {
+    margin-top: 5em;
+    grid-template-columns: auto auto;
+}
+#selections button {
+    width: min-content;
+    margin: 0 auto;
 }
 ul {
     padding: 1em 0;
@@ -91,9 +103,11 @@ a:hover {
     text-decoration: underline;
 }
 footer {
+    position: relative;
     bottom: 0;
     padding: 1em;
     background: black;
     color: white;
-    width: -webkit-fill-available;;
+    width: -webkit-fill-available;
+    height: 2em;
 }
