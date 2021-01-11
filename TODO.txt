@@ -1,13 +1,15 @@
 TODO
 Add storage of scores
 --added local store
--add session storage, option for local
+-add session storage for statistics
 -Show statistics, number of each interval/chord played and percentage correct
 Progressions
 Melodic line
 Add more intervals
 Add more chords
 Play individual notes of chords
+Add sidebar navigation for smaller screens
+Home page
 
 DONE
 Change between harmonic and melodic intervals

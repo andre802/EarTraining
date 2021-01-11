@@ -5,12 +5,14 @@ let score = 0;
 /* Object containing appropriate methods and properties
 * for testing the user on intervals. 
 */
+let main = document.getElementsByTagName("main")[0];
 const Intervals = {
     type: "melodic", // Or harmonic
     interval: "", // The interval being played for the user to identify
     start: "", // note
     direction: "asc", // Or descending (desc)
-    intervals: ["m2", "M2", "m3", "M3", "P4", "P5", "m6", "M6", "m7", "M7", "P8"],
+    intervals: ["M2", "M3", "P4", "P5","M6", "M7", "P8"],
+    allIntervals: ["m2", "M2", "m3", "M3", "P4", "P5", "m6", "M6", "m7", "M7", "P8"],
     intervalButton: (id, interval) => {
         const button = document.createElement("button");
         button.id = id;
@@ -56,11 +58,45 @@ const Intervals = {
         main.append(intervalDiv);
 
     },
+    makeSelections: () => {
+        const section = document.createElement("section");
+        const p = document.createElement("p");
+        p.innerText = "Click to add or remove the types of intervals to hear.";
+        section.id = "selections";
+        section.appendChild(p);
+        for (let i = 0; i < Intervals.allIntervals.length; i++) {
+            section.append(Intervals.selectionButton(Intervals.allIntervals[i]))
+        }
+        main.append(section);
+    },
+    selectionButton: (name) => {
+        const button = document.createElement("button");
+        button.classList = "select";
+        button.innerText = name;
+        button.addEventListener("click", (e) => {
+            Intervals.changeSelection(name);
+        })
+        return button;
+    },
     changeDirection: () => {
         if (Intervals.direction == "asc") {
             Intervals.direction = "desc";
         } else {
             Intervals.direction = "asc";
+        }
+    },
+    changeSelection: (name) => {
+        /* If interval selected is in the pool of heard 
+        * intervals, remove it from pool and delete the
+        * corresponding Element from the HTML tree.
+        */
+        if (Intervals.intervals.includes(name)) {
+            Intervals.intervals = Intervals.intervals.filter((interName) => interName != name);
+            // Find single element using filter, then remove Element from its tree
+            Array.from(document.getElementById("intervals").children).filter(el => el.id == name)[0].remove();
+        } else {
+            Intervals.intervals.push(name);
+            document.getElementById("intervals").append(Intervals.intervalButton(name, Intervals.convert(name)));
         }
     },
     changeType: (btn) => {
@@ -171,7 +207,8 @@ const Intervals = {
 
         Intervals.makeControls();
         Intervals.makeIntervalButtons();
-    }
+        Intervals.makeSelections();
+    }   
 }
 Intervals.load();
 

@@ -74,18 +74,15 @@ const Chords = {
         if (Chords.selectedChords.includes(type)) {
             Chords.selectedChords = Chords.selectedChords.filter(chord => chord != type);
             // Remove button from chord selections
-            let arr = Array.from(document.getElementById("chords").children).filter(el => el.id != type);
-            let chords = document.getElementById("chords").innerHTML = '';
-            arr.forEach(el => {
-                document.getElementById("chords").append(el);
-            })
-            // Undisable button from section
+            Array.from(document.getElementById("chords").children).filter(el => el.id == type)[0].remove();
+            // TODO Undisable button from section
             //Array.from(document.getElementById("selections").children).filter(el => el.id == type)[0].disabled = "false";
         } else {
             // Add chord to selection
             Chords.selectedChords.push(type);
             document.getElementById("chords").append(Chords.chordButton(type));
-           //Array.from(document.getElementById("selections").children).filter(el => el.innerText == type)[0].disabled = "true";
+           // TODO disable
+            //Array.from(document.getElementById("selections").children).filter(el => el.innerText == type)[0].disabled = "true";
         }
     },
     playChord: () => {
