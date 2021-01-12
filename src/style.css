@@ -85,10 +85,11 @@ button:hover {
     box-shadow: 4px 2px 1px grey;
     background-color: crimson;
 }
-
+/** Make a class */
 #intervals,
 #chords,
-#selections {
+#selections,
+#progressions {
     display: grid;
     width: fit-content;
     grid-template-columns: auto auto auto;

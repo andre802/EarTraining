@@ -88,11 +88,11 @@ const Chords = {
             //Array.from(document.getElementById("selections").children).filter(el => el.innerText == type)[0].disabled = "true";
         }
     },
-    playChord: () => {
+    playChord: (chord = Chords.notes) => {
         let ac = new AudioContext();
         Soundfont.instrument(ac, "acoustic_grand_piano").then((piano) => {
-            for (let i = 0; i < Chords.notes.length; i++) {
-                piano.play(Chords.notes[i], ac.currentTime).stop(ac.currentTime + 2);
+            for (let i = 0; i < chord; i++) {
+                piano.play(chord[i], ac.currentTime).stop(ac.currentTime + 2);
             }
         })
     },
@@ -145,6 +145,8 @@ const Chords = {
     load: () => {
         if (localStorage.getItem("chordStreak") != null) {
             document.getElementById("streak").innerText = localStorage.getItem("chordStreak");
+        } else {
+            localStorage.setItem("chordStreak", 0);
         }
 
         Chords.makeControls();

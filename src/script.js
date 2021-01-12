@@ -209,6 +209,8 @@ const Intervals = {
     load: () => {
         if (localStorage.getItem("streak") != null) {
             document.getElementById("streak").innerText = localStorage.getItem("streak");
+        } else {
+            localStorage.setItem("streak", 0);
         }
 
         Intervals.makeControls();

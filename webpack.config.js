@@ -3,7 +3,8 @@ module.exports = {
     mode: 'development',
     entry: {
         script: './src/script.js',
-        chords: './src/chords.js'
+        chords: './src/chords.js',
+        progressions: './src/progressions.js'
     },
     output: {
         filename: '[name].bundle.js',

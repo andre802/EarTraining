@@ -5,14 +5,16 @@ Add storage of scores
 -Show statistics, number of each interval/chord played and percentage correct
 Progressions
 Melodic line
-Add more intervals
-Add more chords
-Play individual notes of chords
 Add sidebar navigation for smaller screens
 Home page
 Create module exporting helper functions (createElement(el, id?, text?, eventListener?), etc)
+Scales 
+Function to convert interval abbreviations to their full names
 
 DONE
 Change between harmonic and melodic intervals
 Chords
 Add augmented/diminished intervals
+Add more intervals
+Add more chords
+Play individual notes of chords
