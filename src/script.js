@@ -72,7 +72,7 @@ const Intervals = {
     selectionButton: (name) => {
         const button = document.createElement("button");
         button.classList = "select";
-        button.innerText = name;
+        button.innerText = Intervals.convert(name);
         button.addEventListener("click", (e) => {
             Intervals.changeSelection(name);
         })

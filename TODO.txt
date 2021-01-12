@@ -4,12 +4,14 @@ Add storage of scores
 -add session storage for statistics
 -Show statistics, number of each interval/chord played and percentage correct
 Progressions
+-add functionality to buttons
 Melodic line
 Add sidebar navigation for smaller screens
 Home page
 Create module exporting helper functions (createElement(el, id?, text?, eventListener?), etc)
 Scales 
 Function to convert interval abbreviations to their full names
+Media queries
 
 DONE
 Change between harmonic and melodic intervals

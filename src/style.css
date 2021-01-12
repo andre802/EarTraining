@@ -85,6 +85,9 @@ button:hover {
     box-shadow: 4px 2px 1px grey;
     background-color: crimson;
 }
+.incorrect {
+    background-color: red;
+}
 /** Make a class */
 #intervals,
 #chords,
@@ -103,17 +106,19 @@ button:hover {
 }
 
 #selections {
-    grid-template-columns: auto auto auto;
     background-color: lightblue;
 }
 #selections p {
-    grid-column: 1/4;
+    grid-column: 1/all;
 }
 #selections button {
     width: min-content;
     margin: 0 auto;
 }
-
+.answer {
+    padding: .2em;
+    margin: 0 1em;
+}
 ul {
     padding: 1em 0;
     display: flex;
