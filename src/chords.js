@@ -34,17 +34,20 @@ const Chords = {
 
         const playChord = cre("button");
         const replayChord = cre("button");
+        const individual = cre("button");
         const reset = cre("button");
-
+        
         playChord.innerText = "Start";
         replayChord.innerText = "Replay";
         reset.innerText = "Reset";
-
+        individual.innerText = "Hear Individual Notes"
+        
         playChord.addEventListener("click", () => Chords.playRandom());
         replayChord.addEventListener("click", () => Chords.playChord());
+        individual.addEventListener("click", () => Chords.playIndividual());
         reset.addEventListener("click", () => Chords.resetScore())
 
-        controlDiv.append(playChord, replayChord, reset);
+        controlDiv.append(playChord, replayChord, individual, reset);
         main.append(controlDiv);
     },
     makeChordButtons: () => {
@@ -106,11 +109,19 @@ const Chords = {
         // Play chord
         Chords.playChord();
     },
+    playIndividual: () => {
+        let ac = new AudioContext();
+        Soundfont.instrument(ac, "acoustic_grand_piano").then((piano) => {
+            for (let i = 0; i < Chords.notes.length; i++) {
+                piano.play(Chords.notes[i], ac.currentTime + i).stop(ac.currentTime + 1 + i);
+            }
+        })
+    },
     checkResponse: (chord, response) => {
         if (chord == response) {
             score++;
             // Update Streak
-            if (localStorage.getItem("chordStreak") != null || localStorage.getItem("chordStreak") < score) {
+            if (localStorage.getItem("chordStreak") < score) {
                 localStorage.setItem("chordStreak", score);
                 document.getElementById("streak").innerText = localStorage.getItem("chordStreak");
             }

@@ -185,7 +185,7 @@ const Intervals = {
             // Show user is correct
             score++;
             // Update Streak
-            if (localStorage.getItem("streak") != null && localStorage.getItem("streak") < score) {
+            if (localStorage.getItem("streak") < score) {
                 localStorage.setItem("streak", score);
                 document.getElementById("streak").innerText = localStorage.getItem("streak");
             }

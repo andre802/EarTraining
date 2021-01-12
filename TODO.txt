@@ -10,6 +10,7 @@ Add more chords
 Play individual notes of chords
 Add sidebar navigation for smaller screens
 Home page
+Create module exporting helper functions (createElement(el, id?, text?, eventListener?), etc)
 
 DONE
 Change between harmonic and melodic intervals
