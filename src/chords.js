@@ -6,7 +6,7 @@ const Chords = {
     type: "",
     tonic: "",
     notes: [],
-    allChords: ["major", "minor", "augmented", "diminished", "maj7", "min7", "dom"],
+    allChords: ["major", "minor", "augmented", "sus4", "sus2", "add6", "m6","diminished", "maj7", "min7", "mM7", "dom", "m7b5", "dim7", "11", "maj9"],
     selectedChords: ["major", "minor", "augmented", "diminished"],
     chordButton: (type) => {
         const button = document.createElement("button");

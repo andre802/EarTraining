@@ -12,7 +12,7 @@ const Intervals = {
     start: "", // note
     direction: "asc", // Or descending (desc)
     intervals: ["M2", "M3", "P4", "P5","M6", "M7", "P8"],
-    allIntervals: ["m2", "M2", "m3", "M3", "P4", "P5", "m6", "M6", "m7", "M7", "P8"],
+    allIntervals: ["m2", "M2", "m3", "M3", "P4", "d5", "P5", "m6", "M6", "m7", "M7", "P8", "m9", "M9"],
     intervalButton: (id, interval) => {
         const button = document.createElement("button");
         button.id = id;
@@ -166,6 +166,8 @@ const Intervals = {
                 return "Minor 3rd";
             case ("P4"):
                 return "Perfect 4th";
+            case ("d5"):
+                return "Tritone";
             case ("P5"):
                 return "Perfect 5th";
             case ("M6"):
@@ -178,6 +180,10 @@ const Intervals = {
                 return "Minor 7th";
             case ("P8"):
                 return "Octave";
+            case ('m9'):
+                return "Minor 9th";
+            case ('M9'):
+                return "Major 9th";
         }
     },
     checkResponse: (interval, response) => {
