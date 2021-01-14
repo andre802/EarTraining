@@ -21,7 +21,6 @@ const Progressions = {
         return button;
     },
     addResponse: (e) => {
-        console.log(Progressions.answer.length)
         let answer = e.target.id;
         let i;
         if (Progressions.answer.includes(null)) {

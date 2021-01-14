@@ -4,7 +4,8 @@ Add storage of scores
 -add session storage for statistics
 -Show statistics, number of each interval/chord played and percentage correct
 Progressions
--add functionality to buttons
+--added functionality to buttons
+-add options, will need to expand function that converts abbreviations to full chord names
 Melodic line
 Add sidebar navigation for smaller screens
 Home page

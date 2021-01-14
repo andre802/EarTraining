@@ -91,7 +91,7 @@ const Chords = {
     playChord: (chord = Chords.notes) => {
         let ac = new AudioContext();
         Soundfont.instrument(ac, "acoustic_grand_piano").then((piano) => {
-            for (let i = 0; i < chord; i++) {
+            for (let i = 0; i < chord.length; i++) {
                 piano.play(chord[i], ac.currentTime).stop(ac.currentTime + 2);
             }
         })
