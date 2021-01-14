@@ -1,6 +1,6 @@
 import Soundfont from 'soundfont-player';
 import { Chord } from '@tonaljs/tonal';
-import {cre, playChord} from './util';
+import {cre, expand, playChord} from './util';
 const notes = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'];
 let score = 0;
 const Chords = {
@@ -118,40 +118,7 @@ const Chords = {
 
     },
     convert: (abbr) => {
-        switch(abbr) {
-            case("major"):
-                return "Major";
-            case("minor"):
-                return "Minor";
-            case("augmented"):
-                return("Augmented")
-            case("diminished"):
-                return("Diminished")
-            case("sus2"):
-                return("Suspended Second")
-            case("sus4"):
-                return("Suspended Fourth")
-            case("add6"):
-                return("Sixth")
-            case("m6"):
-                return("Minor Sixth")
-            case("maj7"):
-                return("Major Seventh")
-            case("min7"):
-                return("Minor Seventh")
-            case("dom"):
-                return("Dominant Seventh")
-            case('mM7'):
-                return('Minor/Major Seventh')
-            case("m7b5"):
-                return("Half-Diminished")
-            case("dim7"):
-                return("Diminished Seventh")
-            case("11"):
-                return("Eleventh")
-            case("maj9"):
-                return("Major Ninth")
-        }
+        return expand(abbr, "chord");
     },
     load: () => {
         if (localStorage.getItem("chordStreak") != null) {

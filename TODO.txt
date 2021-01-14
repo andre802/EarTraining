@@ -9,7 +9,6 @@ Progressions
 Melodic line
 Add sidebar navigation for smaller screens
 Home page
-Create module exporting helper functions (createElement(el, id?, text?, eventListener?), etc)
 Scales 
 Function to convert interval abbreviations to their full names
 Media queries
@@ -21,3 +20,4 @@ Add augmented/diminished intervals
 Add more intervals
 Add more chords
 Play individual notes of chords
+Create module exporting helper functions (createElement(el, id?, text?, eventListener?), etc)

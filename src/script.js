@@ -1,6 +1,6 @@
 import Soundfont from 'soundfont-player';
 import { Interval, Note } from '@tonaljs/tonal';
-import {cre} from './util';
+import {cre, expand} from './util';
 const notes = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'];
 let score = 0;
 /* Object containing appropriate methods and properties
@@ -136,36 +136,7 @@ const Intervals = {
     *  Must update if any new intervals are added.
     */
     convert: (intervalAbbr) => {
-        switch (intervalAbbr) {
-            case ("M2"):
-                return "Major 2nd";
-            case ("m2"):
-                return "Minor 2nd";
-            case ("M3"):
-                return "Major 3rd";
-            case ("m3"):
-                return "Minor 3rd";
-            case ("P4"):
-                return "Perfect 4th";
-            case ("d5"):
-                return "Tritone";
-            case ("P5"):
-                return "Perfect 5th";
-            case ("M6"):
-                return "Major 6th";
-            case ("m6"):
-                return "Minor 6th";
-            case ("M7"):
-                return "Major 7th";
-            case ("m7"):
-                return "Minor 7th";
-            case ("P8"):
-                return "Octave";
-            case ('m9'):
-                return "Minor 9th";
-            case ('M9'):
-                return "Major 9th";
-        }
+        return expand(intervalAbbr, "interval");
     },
     checkResponse: (interval, response) => {
         if (interval == response) {

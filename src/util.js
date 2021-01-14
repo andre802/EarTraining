@@ -30,5 +30,73 @@ export function playChord(notes, ac) {
             }
         });
 }
-
+export function expand(abbr, type) {
+    if (type == "chord") {
+        switch(abbr) {
+            case("major"):
+                return "Major";
+            case("minor"):
+                return "Minor";
+            case("augmented"):
+                return("Augmented")
+            case("diminished"):
+                return("Diminished")
+            case("sus2"):
+                return("Suspended Second")
+            case("sus4"):
+                return("Suspended Fourth")
+            case("add6"):
+                return("Sixth")
+            case("m6"):
+                return("Minor Sixth")
+            case("maj7"):
+                return("Major Seventh")
+            case("min7"):
+                return("Minor Seventh")
+            case("dom"):
+                return("Dominant Seventh")
+            case('mM7'):
+                return('Minor/Major Seventh')
+            case("m7b5"):
+                return("Half-Diminished")
+            case("dim7"):
+                return("Diminished Seventh")
+            case("11"):
+                return("Eleventh")
+            case("maj9"):
+                return("Major Ninth")
+        }
+    } else if (type == "interval") {
+        switch (abbr) {
+            case ("M2"):
+                return "Major 2nd";
+            case ("m2"):
+                return "Minor 2nd";
+            case ("M3"):
+                return "Major 3rd";
+            case ("m3"):
+                return "Minor 3rd";
+            case ("P4"):
+                return "Perfect 4th";
+            case ("d5"):
+                return "Tritone";
+            case ("P5"):
+                return "Perfect 5th";
+            case ("M6"):
+                return "Major 6th";
+            case ("m6"):
+                return "Minor 6th";
+            case ("M7"):
+                return "Major 7th";
+            case ("m7"):
+                return "Minor 7th";
+            case ("P8"):
+                return "Octave";
+            case ('m9'):
+                return "Minor 9th";
+            case ('M9'):
+                return "Major 9th";
+        }
+    }
+}
 //export function getRandom(max) {}
