@@ -11,7 +11,7 @@ const Chords = {
     chordButton: (type) => {
         const button = document.createElement("button");
         button.id = type;
-        button.innerText = type;
+        button.innerText = Chords.convert(type);
         button.addEventListener("click", (e) => {
             Chords.checkResponse(Chords.type, e.target.id);
         })
@@ -20,7 +20,7 @@ const Chords = {
     selectionButton: (type) => {
         const button = document.createElement("button");
         button.classList = "select";
-        button.innerText = type;
+        button.innerText = Chords.convert(type);
         button.addEventListener("click", (e) => {
             Chords.changeSelection(type);
         })
@@ -125,13 +125,13 @@ const Chords = {
                 localStorage.setItem("chordStreak", score);
                 document.getElementById("streak").innerText = localStorage.getItem("chordStreak");
             }
-            let correct = `<br>Correct! You answered ${response}`;
+            let correct = `<br>Correct! You answered ${Chords.convert(response)}`;
             document.getElementById("score").innerHTML = score + correct;
             Chords.playRandom();
         } else {
             // Show user is incorrect, show correct answer
             score--;
-            let incorrect = `<br>Incorrect. You answered ${response} while the answer is ${chord}`;
+            let incorrect = `<br>Incorrect. You answered ${Chords.convert(response)} while the answer is ${Chords.convert(chord)}`;
             document.getElementById("score").innerHTML = score + incorrect;
             Chords.playRandom();
         }
@@ -141,6 +141,42 @@ const Chords = {
         score = 0;
         document.getElementById("score").innerHTML = "Press 'Start' to hear an infinite loop of chords. Hit 'Replay' to hear the chord again. <br>Try to beat your streak!";
 
+    },
+    convert: (abbr) => {
+        switch(abbr) {
+            case("major"):
+                return "Major";
+            case("minor"):
+                return "Minor";
+            case("augmented"):
+                return("Augmented")
+            case("diminished"):
+                return("Diminished")
+            case("sus2"):
+                return("Suspended Second")
+            case("sus4"):
+                return("Suspended Fourth")
+            case("add6"):
+                return("Sixth")
+            case("m6"):
+                return("Minor Sixth")
+            case("maj7"):
+                return("Major Seventh")
+            case("min7"):
+                return("Minor Seventh")
+            case("dom"):
+                return("Dominant Seventh")
+            case('mM7'):
+                return('Minor/Major Seventh')
+            case("m7b5"):
+                return("Half-Diminished")
+            case("dim7"):
+                return("Diminished Seventh")
+            case("11"):
+                return("Eleventh")
+            case("maj9"):
+                return("Major Ninth")
+        }
     },
     load: () => {
         if (localStorage.getItem("chordStreak") != null) {

@@ -95,7 +95,7 @@ button:hover {
 #progressions {
     display: grid;
     width: fit-content;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
     grid-column-gap: 1em;
     grid-row-gap: .5em;
     margin: 1em auto 2em;
@@ -163,4 +163,9 @@ footer {
     color: white;
     width: -webkit-fill-available;
     height: 2em;
+}
+@media (max-width: 500px) {
+    #selections, #progressions, #controls, #chords {
+        grid-template-columns: auto auto;
+    }
 }
