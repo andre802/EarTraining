@@ -1,5 +1,6 @@
 import Soundfont from 'soundfont-player';
 import { Progression, RomanNumeral, Chord } from "@tonaljs/tonal";
+import { cre } from './util';
 let score = 0;
 const Progressions = {
     selectedDegrees: ["Imaj", "iim", "iiim", "IVmaj", "Vmaj", "vim", "viio"],
@@ -14,14 +15,11 @@ const Progressions = {
      * @TODO make into class 
      */
     progressionButton: (type) => {
-        const button = document.createElement("button");
-        button.id = type;
-        button.innerText = type;
-        button.addEventListener("click", (e) => Progressions.addResponse(e));
-        return button;
+        return cre("button", type, () => Progressions.addResponse(type), type);
+ 
     },
-    addResponse: (e) => {
-        let answer = e.target.id;
+    addResponse: (answer) => {
+        if (Progressions.answer.length == Progressions.length && !Progressions.answer.includes(null)) return;
         let i;
         if (Progressions.answer.includes(null)) {
             i = Progressions.answer.indexOf(null);
@@ -86,42 +84,22 @@ const Progressions = {
      * class name and event handler to remove node from selected chords
      */
     responseSpan: (answer, i) => {
-        let span = document.createElement("span");
-        span.innerText = answer;
-        span.id = answer;
-        span.classList += "answer";
-        // Remove from answers
-        span.addEventListener("click", (e) => {
+        return cre("span", answer,  (e) => {
             if (e.target.id != Progressions.progression[i] && e.target.classList.contains("incorrect")) {
                 Progressions.answer.splice(i, 1, null);
                 e.target.remove();
             }
-        });
-        return span;
+        }, answer, "answer");
     },
     makeControls: () => {
-        const cre = (el) => document.createElement(el);
         const main = document.getElementsByTagName('main')[0];
-        const controlDiv = cre("div");
+        const controlDiv = document.createElement("div");
         controlDiv.id = 'controls';
 
-        const playProgression = cre("button");
-        const replayProgression = cre("button");
-        const reset = cre("button");
+        const playProgression = cre("button", "Start", () => Progressions.playRandom());
+        const replayProgression = cre("button", "Replay", () => Progression.playProgression());
+        const reset = cre("button", "Reset", () => Progressions.resetScore());
 
-        playProgression.innerText = "Start";
-        replayProgression.innerText = "Replay";
-        reset.innerText = "Reset";
-
-        playProgression.addEventListener("click", () => {
-            Progressions.playRandom();
-        })
-        replayProgression.addEventListener("click", () => {
-            Progressions.playProgression();
-        })
-        reset.addEventListener("click", () => {
-            Progressions.resetScore();
-        })
         controlDiv.append(playProgression, replayProgression, reset);
         main.append(controlDiv);
     },

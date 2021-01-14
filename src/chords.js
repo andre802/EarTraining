@@ -1,5 +1,6 @@
 import Soundfont from 'soundfont-player';
 import { Chord } from '@tonaljs/tonal';
+import {cre} from './util';
 const notes = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'];
 let score = 0;
 const Chords = {
@@ -9,27 +10,17 @@ const Chords = {
     allChords: ["major", "minor", "augmented", "sus4", "sus2", "add6", "m6","diminished", "maj7", "min7", "mM7", "dom", "m7b5", "dim7", "11", "maj9"],
     selectedChords: ["major", "minor", "augmented", "diminished"],
     chordButton: (type) => {
-        const button = document.createElement("button");
-        button.id = type;
-        button.innerText = Chords.convert(type);
-        button.addEventListener("click", (e) => {
+        return cre("button", Chords.convert(type), (e) => {
             Chords.checkResponse(Chords.type, e.target.id);
-        })
-        return button;
+        }, type);
     },
     selectionButton: (type) => {
-        const button = document.createElement("button");
-        button.classList = "select";
-        button.innerText = Chords.convert(type);
-        button.addEventListener("click", (e) => {
-            Chords.changeSelection(type);
-        })
-        return button;
+        return cre("button", Chords.convert(type), (e) => Chords.changeSelection(type),)
     },
     makeControls: () => {
         const cre = (el) => document.createElement(el);
         const main = document.getElementsByTagName("main")[0];
-        const controlDiv = cre("div");
+        const controlDiv = document.createElement("div");
         controlDiv.id = 'controls';
 
         const playChord = cre("button");
