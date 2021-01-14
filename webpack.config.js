@@ -4,7 +4,7 @@ module.exports = {
     entry: {
         script: './src/script.js',
         chords: './src/chords.js',
-        progressions: './src/progressions.js'
+        progressions: './src/progressions.js',
     },
     output: {
         filename: '[name].bundle.js',

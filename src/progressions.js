@@ -80,7 +80,6 @@ const Progressions = {
 
     },
     /**
-     * 
      * @param {string} answer - abbreviated name of the chord selected by the user
      * @param {number} i - index of the chord within the Progression.answer array 
      * @return {HTMLSpanElement} span element with text of the chord name, id, appropriate
@@ -153,6 +152,10 @@ const Progressions = {
                 piano.play(notes[i], ac.currentTime).stop(ac.currentTime + 1);
             }
         })
+    },
+    resetScore: () => {
+        score = 0;
+        document.getElementById("score").innerHTML = "Press 'Start' to hear a series of chords that make up a progression. Try to identify the chords below.";
     },
     /**
      * @param {string} chord - Abbreviated name for the chord 
