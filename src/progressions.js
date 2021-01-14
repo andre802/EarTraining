@@ -1,6 +1,6 @@
 import Soundfont from 'soundfont-player';
 import { Progression, RomanNumeral, Chord } from "@tonaljs/tonal";
-import { cre } from './util';
+import { cre, playChord } from './util';
 let score = 0;
 const Progressions = {
     selectedDegrees: ["Imaj", "iim", "iiim", "IVmaj", "Vmaj", "vim", "viio"],
@@ -97,7 +97,7 @@ const Progressions = {
         controlDiv.id = 'controls';
 
         const playProgression = cre("button", "Start", () => Progressions.playRandom());
-        const replayProgression = cre("button", "Replay", () => Progression.playProgression());
+        const replayProgression = cre("button", "Replay", () => Progressions.playProgression());
         const reset = cre("button", "Reset", () => Progressions.resetScore());
 
         controlDiv.append(playProgression, replayProgression, reset);
@@ -125,11 +125,7 @@ const Progressions = {
     playChord: (chord) => {
         let ac = new AudioContext();
         let notes = Chord.get(Progression.fromRomanNumerals("C5", [Progressions.chordType(chord)])).notes;
-        Soundfont.instrument(ac, "acoustic_grand_piano").then((piano) => {
-            for (let i = 0; i < notes.length; i++) {
-                piano.play(notes[i], ac.currentTime).stop(ac.currentTime + 1);
-            }
-        })
+        playChord(notes, ac);
     },
     resetScore: () => {
         score = 0;

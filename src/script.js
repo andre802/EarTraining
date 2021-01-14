@@ -1,5 +1,5 @@
 import Soundfont from 'soundfont-player';
-import { Note } from '@tonaljs/tonal';
+import { Interval, Note } from '@tonaljs/tonal';
 import {cre} from './util';
 const notes = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'];
 let score = 0;
@@ -15,36 +15,20 @@ const Intervals = {
     intervals: ["M2", "M3", "P4", "P5","M6", "M7", "P8"],
     allIntervals: ["m2", "M2", "m3", "M3", "P4", "d5", "P5", "m6", "M6", "m7", "M7", "P8", "m9", "M9"],
     intervalButton: (id, interval) => {
-        const button = document.createElement("button");
-        button.id = id;
-        button.innerText = interval;
-        button.addEventListener("click", (e) => {
+        return cre("button", interval, (e) => {
             Intervals.checkResponse(Intervals.interval, e.target.id)
-        })
-        return button;
+        },id);
     },
     makeControls: () => {
         const main = document.getElementsByTagName("main")[0];
         const controlDiv = document.createElement("div");
         controlDiv.id = "controls";
 
-        const playInterval = document.createElement("button");
-        const replayInterval = document.createElement("button");
-        const changeDirection = document.createElement("button");
-        const changeType = document.createElement("button");
-        const reset = document.createElement("button");
-
-        playInterval.innerText = "Start";
-        replayInterval.innerText = "Replay";
-        changeDirection.innerText = "Change Direction";
-        changeType.innerText = "Melodic";
-        reset.innerText = "Reset";
-
-        playInterval.addEventListener("click", () => Intervals.playRandom());
-        replayInterval.addEventListener("click", () => Intervals.playInterval(Intervals.interval))
-        changeDirection.addEventListener("click", () => Intervals.changeDirection());
-        changeType.addEventListener("click", () => Intervals.changeType(changeType));
-        reset.addEventListener("click", () => Intervals.resetScore())
+        const playInterval = cre("button", "Start", () => Intervals.playRandom());
+        const replayInterval = cre("button", "Replay", () => Intervals.playInterval(Intervals.interval));
+        const changeDirection = cre("button", "Change Direction", () => Intervals.changeDirection());
+        const changeType = cre("button", "Melodic", () => Intervals.changeType(changeType));
+        const reset = cre("button", "Reset", () => Intervals.resetScore());
 
         controlDiv.append(playInterval, replayInterval, changeDirection, changeType, reset);
         main.append(controlDiv);
@@ -71,13 +55,9 @@ const Intervals = {
         main.append(section);
     },
     selectionButton: (name) => {
-        const button = document.createElement("button");
-        button.classList = "select";
-        button.innerText = Intervals.convert(name);
-        button.addEventListener("click", (e) => {
+        return cre("button", Intervals.convert(name),(e) => {
             Intervals.changeSelection(name);
-        })
-        return button;
+        },"", "select");
     },
     changeDirection: () => {
         if (Intervals.direction == "asc") {

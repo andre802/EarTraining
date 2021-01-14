@@ -1,6 +1,6 @@
 import Soundfont from 'soundfont-player';
 import { Chord } from '@tonaljs/tonal';
-import {cre} from './util';
+import {cre, playChord} from './util';
 const notes = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'];
 let score = 0;
 const Chords = {
@@ -15,28 +15,17 @@ const Chords = {
         }, type);
     },
     selectionButton: (type) => {
-        return cre("button", Chords.convert(type), (e) => Chords.changeSelection(type),)
+        return cre("button", Chords.convert(type), (e) => Chords.changeSelection(type),type);
     },
     makeControls: () => {
-        const cre = (el) => document.createElement(el);
         const main = document.getElementsByTagName("main")[0];
         const controlDiv = document.createElement("div");
         controlDiv.id = 'controls';
 
-        const playChord = cre("button");
-        const replayChord = cre("button");
-        const individual = cre("button");
-        const reset = cre("button");
-        
-        playChord.innerText = "Start";
-        replayChord.innerText = "Replay";
-        reset.innerText = "Reset";
-        individual.innerText = "Hear Individual Notes"
-        
-        playChord.addEventListener("click", () => Chords.playRandom());
-        replayChord.addEventListener("click", () => Chords.playChord());
-        individual.addEventListener("click", () => Chords.playIndividual());
-        reset.addEventListener("click", () => Chords.resetScore())
+        const playChord = cre("button", "Start", () => Chords.playRandom());
+        const replayChord = cre("button", "Replay", () => Chords.playChord());
+        const reset = cre("button", "Reset", () => Chords.resetScore());
+        const individual = cre("button", "Hear Individual Notes", () => Chords.playIndividual());
 
         controlDiv.append(playChord, replayChord, individual, reset);
         main.append(controlDiv);
@@ -81,11 +70,7 @@ const Chords = {
     },
     playChord: (chord = Chords.notes) => {
         let ac = new AudioContext();
-        Soundfont.instrument(ac, "acoustic_grand_piano").then((piano) => {
-            for (let i = 0; i < chord.length; i++) {
-                piano.play(chord[i], ac.currentTime).stop(ac.currentTime + 2);
-            }
-        })
+        playChord(chord, ac);
     },
     playRandom: () => {
         const getRandom = (max) => {
@@ -127,7 +112,6 @@ const Chords = {
             Chords.playRandom();
         }
     },
-    hearIndividual: () => { },
     resetScore: () => {
         score = 0;
         document.getElementById("score").innerHTML = "Press 'Start' to hear an infinite loop of chords. Hit 'Replay' to hear the chord again. <br>Try to beat your streak!";
