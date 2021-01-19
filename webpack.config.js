@@ -7,6 +7,17 @@ module.exports = {
         progressions: './src/progressions.js',
      //   scales: './src/scales.js'
     },
+    devServer: {
+        contentBase: './dist'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')

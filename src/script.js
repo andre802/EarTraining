@@ -1,11 +1,15 @@
+import './style.css';
 import Soundfont from 'soundfont-player';
-import { Interval, Note } from '@tonaljs/tonal';
-import {cre, expand} from './util';
+import { Note } from '@tonaljs/tonal';
+import {cre, expand, Header, Score} from './util';
 const notes = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'];
 let score = 0;
 /* Object containing appropriate methods and properties
 * for testing the user on intervals. 
 */
+Header("Intervals")
+Score("Intervals");
+
 let main = document.getElementsByTagName("main")[0];
 const Intervals = {
     type: "melodic", // Or harmonic
@@ -55,9 +59,10 @@ const Intervals = {
         main.append(section);
     },
     selectionButton: (name) => {
-        return cre("button", Intervals.convert(name),(e) => {
+        let disabled = (Intervals.intervals.includes(name)) ? "disabled" : "";
+        return cre("button", Intervals.convert(name),() => {
             Intervals.changeSelection(name);
-        },"", "select");
+        },disabled, "select");
     },
     changeDirection: () => {
         if (Intervals.direction == "asc") {
@@ -76,6 +81,7 @@ const Intervals = {
             // Find single element using filter, then remove Element from its tree
             Array.from(document.getElementById("intervals").children).filter(el => el.id == name)[0].remove();
         } else {
+            // Else add to heard intervals in inner arr and for the user
             Intervals.intervals.push(name);
             document.getElementById("intervals").append(Intervals.intervalButton(name, Intervals.convert(name)));
         }

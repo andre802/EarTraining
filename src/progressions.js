@@ -1,6 +1,9 @@
-import Soundfont from 'soundfont-player';
-import { Progression, RomanNumeral, Chord } from "@tonaljs/tonal";
-import { cre, playChord } from './util';
+import './style.css';
+import { Progression, Chord } from "@tonaljs/tonal";
+import {cre, playChord, Header, Score} from './util';
+
+Header("Progressions");
+Score("Progressions");
 let score = 0;
 const Progressions = {
     selectedDegrees: ["Imaj", "iim", "iiim", "IVmaj", "Vmaj", "vim", "viio"],
