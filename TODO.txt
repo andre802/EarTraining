@@ -12,6 +12,8 @@ Home page
 Scales 
 Function to convert interval abbreviations to their full names
 Media queries
+Make header and score modules
+Add distinct font 
 
 DONE
 Change between harmonic and melodic intervals

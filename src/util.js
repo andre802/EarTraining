@@ -12,7 +12,7 @@ const pages = {
         introduction: "Press 'Start' to hear an infinite loop of chords. Between each chord, try to identify the type. Press 'Replay' to hear the chord again."
     },
     "Progressions": {
-        introduction: 'Press "Start" to hear a series of <id="count">4</id> chords. Attempt to identify which chords were played. The tonic will always be C.'
+        introduction: 'Press "Start" to hear a series of <id="count">4</id> chords. Attempt to identify which chords were played. The first chord will always be I.'
     },
     "Register": {
         introduction: ""
